@@ -12,8 +12,9 @@ from codespell_lib._codespell import (build_dict, default_dictionary,
 
 
 def setup_dict():
-    misspellings = dict()
-    return build_dict(default_dictionary, misspellings, set())
+    misspellings = {}
+    build_dict(default_dictionary, misspellings, set())
+    return misspellings
 
 
 def get_patched_files(diff_text):
