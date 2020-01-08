@@ -13,6 +13,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - uses: ./ # Uses an action in the root directory
-    - name: test action step
-      id: testing
-      uses: plettich/python_codespell_action@master
+#    - name: test action step
+#      id: testing
+#      uses: plettich/python_codespell_action@master

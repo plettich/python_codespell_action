@@ -1,5 +1,6 @@
 certifi==2019.11.28
 chardet==3.0.4
+codespell==1.16.0
 Deprecated==1.2.7
 idna==2.8
 PyGithub==1.45
