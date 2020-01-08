@@ -3,7 +3,7 @@ on:
   pull_request:
     # Only use the types keyword to narrow down the activity types that will
     # trigger your workflow.
-    types: [opened, edited]
+    types: [opened, edited, synchronize]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
