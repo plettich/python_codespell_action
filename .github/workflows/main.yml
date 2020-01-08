@@ -1,0 +1,18 @@
+# Trigger the workflow on pull request activity
+on:
+  pull-request:
+    # Only use the types keyword to narrow down the activity types that will
+    # trigger your workflow.
+    types: [opened, edited]
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A test job
+    steps:
+    # To use this repository's private action, you must check out the repository
+    - name: Checkout
+      uses: actions/checkout@v1
+    - uses: ./ # Uses an action in the root directory
+    - name: test action step
+      id: testing
+      uses: actions/python_codespell_action@master
