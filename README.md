@@ -5,7 +5,7 @@ It uses the idea, name and dictionary from https://github.com/codespell-project/
 
 ## Example usage
 
-uses: actions/python_codespell_action@v1
+uses: plettich/python_codespell_action@master
 
 ## TODO
 
