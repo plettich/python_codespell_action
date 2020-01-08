@@ -12,5 +12,6 @@ uses: plettich/python_codespell_action@master
 ## TODO
 
 - [ ] implement PR comment
+- [ ] check filesnames as well
 - [ ] add configuration file for adding excludes, dictionaries and ignores
 - [ ] make avatar and messages configurable
