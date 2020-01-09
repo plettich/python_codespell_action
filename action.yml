@@ -1,4 +1,4 @@
-name: 'Codespell'
+name: 'Codespell action'
 description: 'Check PR with Codespell'
 inputs:
   token:
