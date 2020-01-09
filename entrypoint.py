@@ -42,6 +42,20 @@ def check_spelling(pfiles, misspellings, word_regex):
     return fixes
 
 
+def comment_pr(fixes, conf, token):
+    if fixes:
+        gh = Github(token=token)
+        pr = gh.get_repo(conf['repository']['full_name']).get_pull(conf['number'])
+        body = 'Possible misspellings:\n'
+        for fname, fix in fixes.items():
+            body += '- `{0!s}`\n'.format(fname)
+            for line, wrong, right in fix:
+                body += '  - line {0:d}: `{1!s}` => `{2!s}`\n'.format(line,
+                                                                      wrong,
+                                                                      right)
+        pr.create_issue_comment(body=body)
+
+
 def main():
     if os.environ['GITHUB_EVENT_NAME'] != 'pull_request':
         print('We only work on pull requests. Doing nothing.')
@@ -51,6 +65,9 @@ def main():
     if not conf:
         print('No GITHUB_EVENT_PATH in environment. Check Your workflow.')
         return 1
+    if conf['action'] not in ['opened', 'edited', 'synchronize']:
+        print('Action mismatch: {0!s}. Doing nothing.'.format(conf['action']))
+        return 0
     diff_url = conf['pull_request']['diff_url']
     diff_request = requests.request(method='GET', url=diff_url)
     if diff_request.status_code != 200:
@@ -61,6 +78,7 @@ def main():
     misspellings = setup_dict()
     fixes = check_spelling(pfiles, misspellings, word_regex)
     print(fixes)
+    comment_pr(fixes, conf, os.environ['GITHUB_TOKEN'])
     return 0
 
 
