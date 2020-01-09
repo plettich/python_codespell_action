@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
 import os
 import re
 import json
@@ -44,7 +45,7 @@ def check_spelling(pfiles, misspellings, word_regex):
 
 def comment_pr(fixes, conf, token):
     if fixes:
-        gh = Github(token=token)
+        gh = Github(login_or_token=token)
         pr = gh.get_repo(conf['repository']['full_name']).get_pull(conf['number'])
         body = 'Possible misspellings:\n'
         for fname, fix in fixes.items():
@@ -57,6 +58,10 @@ def comment_pr(fixes, conf, token):
 
 
 def main():
+    if len(sys.argv) < 2:
+        print('No github token found, aborting!')
+        return 1
+    gh_token = sys.argv[1]
     if os.environ['GITHUB_EVENT_NAME'] != 'pull_request':
         print('We only work on pull requests. Doing nothing.')
         return 0
@@ -78,7 +83,7 @@ def main():
     misspellings = setup_dict()
     fixes = check_spelling(pfiles, misspellings, word_regex)
     print(fixes)
-    comment_pr(fixes, conf, os.environ['GITHUB_TOKEN'])
+    comment_pr(fixes, conf, gh_token)
     return 0
 
 
