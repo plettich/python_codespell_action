@@ -15,3 +15,7 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.token }}
+
+branding:
+  icon: 'edit-3'
+  color: 'purple'
