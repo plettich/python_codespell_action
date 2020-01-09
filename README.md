@@ -7,11 +7,12 @@ After running the action, it adds a comment if misspellings were found.
 
 ## Example usage
 
-uses: plettich/python_codespell_action@master
+`uses: plettich/python_codespell_action@master`
 
 ## TODO
 
 - [x] implement PR comment
+- [ ] add tests
 - [ ] update PR comment and don't post new ones on each run
 - [ ] check filenames as well
 - [ ] add configuration file for adding excludes, dictionaries and ignores
