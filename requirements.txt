@@ -8,5 +8,5 @@ PyJWT==2.4.0
 requests==2.22.0
 six==1.13.0
 unidiff==0.5.5
-urllib3==1.25.7
+urllib3==1.26.5
 wrapt==1.11.2
